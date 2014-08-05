@@ -1,0 +1,13 @@
+diff -rupN vsock-only/linux/af_vsock.c vsock-only-mod/linux/af_vsock.c
+--- vsock-only/linux/af_vsock.c	2014-04-15 03:11:41.000000000 +0530
++++ vsock-only-mod/linux/af_vsock.c	2014-05-27 21:39:51.081284121 +0530
+@@ -2869,7 +2869,8 @@ __VSockVmciCreate(struct net *net,
+       vsk->connectTimeout = psk->connectTimeout;
+    } else {
+       vsk->trusted = capable(CAP_NET_ADMIN);
+-      vsk->owner = current_uid();
++	  kuid_t kern_uid = current_uid();
++      vsk->owner = kern_uid.val;
+       vsk->queuePairSize = VSOCK_DEFAULT_QP_SIZE;
+       vsk->queuePairMinSize = VSOCK_DEFAULT_QP_SIZE_MIN;
+       vsk->queuePairMaxSize = VSOCK_DEFAULT_QP_SIZE_MAX;

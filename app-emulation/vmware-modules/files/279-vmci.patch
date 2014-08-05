@@ -1,0 +1,21 @@
+diff -rupN vmci-only/linux/driver.c vmci-only-mod/linux/driver.c
+--- vmci-only/linux/driver.c	2014-04-15 03:11:40.000000000 +0530
++++ vmci-only-mod/linux/driver.c	2014-05-27 21:28:20.389314970 +0530
+@@ -716,6 +716,7 @@ LinuxDriver_Ioctl(struct inode *inode,
+    case IOCTL_VMCI_INIT_CONTEXT: {
+       VMCIInitBlock initBlock;
+       VMCIHostUser user;
++	  kuid_t kern_uid;
+ 
+       retval = copy_from_user(&initBlock, (void *)ioarg, sizeof initBlock);
+       if (retval != 0) {
+@@ -737,7 +738,8 @@ LinuxDriver_Ioctl(struct inode *inode,
+          goto init_release;
+       }
+ 
+-      user = current_uid();
++	  kern_uid = current_uid();
++      user = kern_uid.val;
+       retval = VMCIContext_InitContext(initBlock.cid, initBlock.flags,
+                                        0 /* Unused */, vmciLinux->userVersion,
+                                        &user, &vmciLinux->context);
