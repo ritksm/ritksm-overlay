@@ -16,7 +16,9 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-DEPEND=">=virtual/jre-1.6"
+DEPEND="
+	>=virtual/jre-1.6
+    sys-libs/ncurses[tinfo]"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${PN}-${PV}
@@ -28,6 +30,8 @@ src_install() {
 	doins -r *
 
 	fperms 755 ${dest}/bin/{clion.sh,fsnotifier{,64},inspect.sh}
+	fperms 755 ${dest}/bin/cmake/bin/cmake{,-x64}
+	fperms 755 ${dest}/bin/gdb/x{64,86}/bin/gdb
 
 	newicon bin/${PN}.svg ${PN}.svg
 	make_wrapper ${PN} ${dest}/bin/${PN}.sh
