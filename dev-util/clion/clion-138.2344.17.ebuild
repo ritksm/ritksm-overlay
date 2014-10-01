@@ -29,9 +29,13 @@ src_install() {
 	insinto ${dest}
 	doins -r *
 
-	fperms 755 ${dest}/bin/{clion.sh,fsnotifier{,64},inspect.sh}
-	fperms 755 ${dest}/bin/cmake/bin/cmake{,-x64}
-	fperms 755 ${dest}/bin/gdb/x{64,86}/bin/gdb
+	# fix perms
+	fperms a+x ${dest}/bin/clion.sh || die "fperms failed"
+	fperms a+x ${dest}/bin/fsnotifier || die "fperms failed"
+	fperms a+x ${dest}/bin/fsnotifier64 || die "fperms failed"
+	fperms a+x ${dest}/bin/inspect.sh || die "fperms failed"
+	fperms a+x ${dest}/bin/cmake/bin/cmake || die "fperms failed"
+	fperms a+x ${dest}/bin/gdb/bin/gdb || die "fperms failed"
 
 	newicon bin/${PN}.svg ${PN}.svg
 	make_wrapper ${PN} ${dest}/bin/${PN}.sh
