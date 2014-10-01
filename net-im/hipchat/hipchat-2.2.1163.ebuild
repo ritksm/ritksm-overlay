@@ -23,6 +23,7 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 DEPEND="
 	media-libs/gstreamer:0.10
+	media-libs/gst-plugins-base:0.10
 "
 RDEPEND="
 	${DEPEND}
