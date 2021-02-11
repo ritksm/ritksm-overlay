@@ -47,7 +47,6 @@ src_install() {
 		rm -r "${D}"/opt/pycharm-professional/lib/pty4j-native/linux/${rub} || die
 	done
 
-	readme.gentoo_create_doc
 }
 
 pkg_postinst() {
