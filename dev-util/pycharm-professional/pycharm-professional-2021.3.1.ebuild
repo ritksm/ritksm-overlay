@@ -107,7 +107,7 @@ src_install() {
 	newicon bin/${MY_PN}.png ${PN}.png
 	make_desktop_entry ${PN} ${PN} ${PN}
 
-	readme.gentoo_create_doc
+	# readme.gentoo_create_doc
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
 	dodir /etc/sysctl.d/
