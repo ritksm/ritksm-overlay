@@ -63,7 +63,6 @@ src_prepare() {
 
 	rm -vf "${S}"/help/ReferenceCardForMac.pdf || die
 
-	rm -vf "${S}"/bin/fsnotifier || die
 	rm -vf "${S}"/bin/phpstorm.vmoptions || die
 
 	rm -vf "${S}"/plugins/performanceTesting/bin/libyjpagent.so || die
@@ -99,7 +98,7 @@ src_install() {
 		rm -r "${JRE_DIR}" || die
 	fi
 
-	fperms 755 "${DIR}"/bin/{format.sh,fsnotifier64,inspect.sh,ltedit.sh,pycharm.sh,printenv.py,restart.py}
+	fperms 755 "${DIR}"/bin/{format.sh,fsnotifier,inspect.sh,ltedit.sh,pycharm.sh,printenv.py,restart.py}
 
 	fperms 755 "${DIR}"/"${JRE_DIR}"/bin/{jaotc,java,javac,jcmd,jdb,jfr,jhsdb,jjs,jmap,jps,jrunscript,jstack,jstat,keytool,pack200,rmid,rmiregistry,serialver,unpack200}
 	fperms 755 "${DIR}"/"${JRE_DIR}"/lib/{chrome-sandbox,jcef_helper,jexec,jspawnhelper}
